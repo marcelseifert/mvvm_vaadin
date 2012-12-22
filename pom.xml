@@ -95,7 +95,7 @@
 					</filesets>
 				</configuration>
 			</plugin>
-<!--			<plugin>  Not needed...only for client application stuff 
+<!--			<plugin>  Not needed...only for client application stuff or add-one (own widgetset stuff)
 				<groupId>com.vaadin</groupId>
 				<artifactId>vaadin-maven-plugin</artifactId>
 				<version>${vaadin.plugin.version}</version>
