@@ -1,28 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
     <display-name>Vaadin Web Application</display-name>
+    
+    <context-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath*:applicationContext*.xml</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+  
+    <servlet>
+        <servlet-name>VaadinSpringServlet</servlet-name>
+        <servlet-class>org.marcel.web.VaadinSpringServlet</servlet-class>
+        <init-param>
+            <param-name>mainVaadinUI</param-name>
+            <param-value>mainUI</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>VaadinSpringServlet</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+    
     <context-param>
         <description>Vaadin production mode</description>
         <param-name>productionMode</param-name>
         <param-value>false</param-value>
     </context-param>
-    <servlet>
-        <servlet-name>Vaadin Application Servlet</servlet-name>
-        <servlet-class>com.vaadin.server.VaadinServlet</servlet-class>
-        <init-param>
-            <description>Vaadin UI to display</description>
-            <param-name>UI</param-name>
-            <param-value>org.marcel.web.mvvm.vaadinmvv.MyVaadinUI</param-value>
-        </init-param>
-        <!-- Not needed...only for client application stuff 
-           <init-param>
-            <description>Application widgetset</description>
-            <param-name>widgetset</param-name>
-            <param-value>org.marcel.web.mvvm.vaadinmvv.AppWidgetSet</param-value>
-        </init-param> -->
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Vaadin Application Servlet</servlet-name>
-        <url-pattern>/*</url-pattern>
-    </servlet-mapping>
+   
 </web-app>

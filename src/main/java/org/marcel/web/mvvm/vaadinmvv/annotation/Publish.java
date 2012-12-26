@@ -20,7 +20,7 @@ import org.marcel.web.mvvm.vaadinmvv.eventing.ViewModelEventTyp;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Publish {
    
-    String eventUID();
+    String eventUID() default  "-1";
     
     ViewModelEventTyp eventTyp() default ViewModelEventTyp.ALL;
     
