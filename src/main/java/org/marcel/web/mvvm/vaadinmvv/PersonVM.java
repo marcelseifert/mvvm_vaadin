@@ -4,12 +4,7 @@
  */
 package org.marcel.web.mvvm.vaadinmvv;
 
-import org.marcel.web.mvvm.vaadinmvv.annotation.Bound;
-import org.marcel.web.mvvm.vaadinmvv.annotation.Publish;
-import org.marcel.web.mvvm.vaadinmvv.annotation.Subscribe;
-import org.marcel.web.mvvm.vaadinmvv.annotation.ViewModel;
-import org.marcel.web.mvvm.vaadinmvv.eventing.Event;
-import org.marcel.web.mvvm.vaadinmvv.eventing.ViewModelEventTyp;
+import org.marcel.web.mvvm.vaadinmvv.eventing.ActionData;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,9 +18,12 @@ public class PersonVM {
      
     private StringProperty surename = new StringProperty("Cooolll");
  
-    @Subscribe(eventUID="firstname.change")
-    @Publish(eventTyp= ViewModelEventTyp.CHANGE, value = @Bound(to="firstname"))
-    public void doChangeFirstname(Event event) {
-        firstname = new StringProperty(event.getValue().toString());
+    public void doChangeFirstname(ActionData<String> event) {
+        firstname.setValue(event.getValue()+ "___"+surename.getValue());
+    }
+    
+    public void resetValues(ActionData<String> event) {
+        firstname.setValue("default1");
+        surename.setValue("default2");
     }
 }

@@ -67,7 +67,7 @@ public class StringProperty implements Property, Property.ValueChangeNotifier {
 
     @Override
     public Class<?> getType() {
-        return StringProperty.class;
+        return String.class;
     }
 
     @Override

@@ -2,14 +2,13 @@ package org.marcel.web.mvvm.vaadinmvv;
 
 import com.vaadin.server.VaadinRequest; 
 import com.vaadin.ui.Button;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Notification;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI; 
+import com.vaadin.ui.VerticalLayout;
 import javax.annotation.PostConstruct;
+import org.marcel.web.mvvm.vaadinmvv.annotation.ActionHandler;
 import org.marcel.web.mvvm.vaadinmvv.annotation.Bound;
-import org.marcel.web.mvvm.vaadinmvv.annotation.Publish;
-import org.marcel.web.mvvm.vaadinmvv.annotation.Subscribe;
 import org.marcel.web.mvvm.vaadinmvv.annotation.ViewModel;
 import org.marcel.web.mvvm.vaadinmvv.factory.ViewModelComposer;
 import org.slf4j.Logger;
@@ -32,24 +31,25 @@ public class MyVaadinUI extends UI
     private Label label = new Label();
     
     @Bound(to="surename")
-    private Label label2 = new Label();
+    private TextField label2 = new TextField();
   
-    @Publish(eventUID="firstname.change", value = @Bound(to="firstname"))
+    @ActionHandler(methodName="doChangeFirstname")
     private Button button = new Button("Test");
-      
+     
+    @ActionHandler(methodName="resetValues")
+    private Button resetbutton = new Button("Reset");
+   
     @Override
     protected void init(VaadinRequest request) {
-        final HorizontalLayout content = new HorizontalLayout();
+        final VerticalLayout content = new VerticalLayout();
+        content.setSpacing(true);
         setContent(content); 
         content.addComponent(label);
         content.addComponent(label2);
-        content.addComponent(button);
+        content.addComponent(button); 
+        content.addComponent(resetbutton); 
     }
-    
-    @Subscribe(eventUID="change.firstname")
-    private void showNotification() {
-        Notification.show("Hat geklappt!!!!!");
-    }
+     
 
     @PostConstruct
     private void bindAll() {

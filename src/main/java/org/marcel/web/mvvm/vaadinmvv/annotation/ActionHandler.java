@@ -9,7 +9,6 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import org.marcel.web.mvvm.vaadinmvv.eventing.ViewModelEventTyp;
 
 /**
  *
@@ -18,7 +17,6 @@ import org.marcel.web.mvvm.vaadinmvv.eventing.ViewModelEventTyp;
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Subscribe {
-    String eventUID();
-    ViewModelEventTyp eventTyp() default ViewModelEventTyp.ALL;
+public @interface ActionHandler {
+    String methodName();
 }
