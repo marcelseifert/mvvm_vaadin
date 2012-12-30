@@ -19,4 +19,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ActionHandler {
     String methodName();
+    String source() default "";
 }
